@@ -77,7 +77,6 @@ describe('Users', () => {
             console.log(res.body.data);
             expect(res.body.data).to.be.eq(undefined);
 
-            
          });
    });
 });
