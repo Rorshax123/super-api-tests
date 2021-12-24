@@ -67,7 +67,7 @@ describe('Users', () => {
             expect(res.body.data).to.deep.include(data);
          });
    });
-
+     
 
    it.only('DELETE /users/:id', () =>{
       return request
@@ -76,6 +76,8 @@ describe('Users', () => {
          .then((res) => {
             console.log(res.body.data);
             expect(res.body.data).to.be.eq(undefined);
+
+            
          });
    });
 });
