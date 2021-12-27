@@ -7,6 +7,7 @@ const TOKEN =
   "a42013229a54d70b3fd0732e02ab6903719d469a666807cbff8874c5eee44a66";
 
 describe.only("Users", () => {
+   let userId;
   describe("POST", () => {
     it("POST /users", () => {
       const data = {
@@ -21,6 +22,7 @@ describe.only("Users", () => {
         .send(data)
         .then((res) => {
           expect(res.body.data).to.deep.include(data);
+          userId = res.body.data.id;
         });
     });
   });
@@ -33,8 +35,8 @@ describe.only("Users", () => {
     });
 
     it("GET/users/id", () => {
-      return request.get(`users/354?access-token=${TOKEN}`).then((res) => {
-        expect(res.body.data.id).to.be.eq(354);
+      return request.get(`users/${userId}?access-token=${TOKEN}`).then((res) => {
+        expect(res.body.data.id).to.be.eq(userId);
       });
     });
 
@@ -58,7 +60,7 @@ describe.only("Users", () => {
       };
 
       return request
-        .put("users/358")
+        .put(`users/${userId}`)
         .set("Authorization", `Bearer ${TOKEN}`)
         .send(data)
         .then((res) => {
@@ -70,7 +72,7 @@ describe.only("Users", () => {
   describe("DELETE", () => {
     it("DELETE /users/:id", () => {
       return request
-        .delete("users/340")
+        .delete(`users/${userId}`)
         .set("Authorization", `Bearer ${TOKEN}`)
         .then((res) => {
           console.log(res.body.data);
