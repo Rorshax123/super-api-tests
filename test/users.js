@@ -7,12 +7,6 @@ const TOKEN = 'a42013229a54d70b3fd0732e02ab6903719d469a666807cbff8874c5eee44a66'
 
 describe('Users', () => {
    it('GET /users', () => {
-
-      //.get(`users?access-token=${TOKEN}`).end((err, res) => {
-      //   expect(res.body.data).to.not.be.empty;
-      //   done();
-      //});
-
       return request.get(`users?access-token=${TOKEN}`).then((res) => {
          expect(res.body.data).to.not.be.empty;
       });
@@ -71,15 +65,11 @@ describe('Users', () => {
 
    it.only('DELETE /users/:id', () =>{
       return request
-         .delete('users/236')
+         .delete('users/237')
          .set('Authorization', `Bearer ${TOKEN}`)
          .then((res) => {
             console.log(res.body.data);
             expect(res.body.data).to.be.eq(undefined);
-            console.log('111')
-console.log('111')
-console.log('111')
-console.log('111')
          });
    });
 });
