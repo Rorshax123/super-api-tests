@@ -6,10 +6,10 @@ import { expect } from "chai";
 const TOKEN =
   "a42013229a54d70b3fd0732e02ab6903719d469a666807cbff8874c5eee44a66";
 
-describe.only("Users", () => {
+describe("Users", () => {
    let userId;
   describe("POST", () => {
-    it("POST /users", () => {
+    it("/users", () => {
       const data = {
         email: `tez-test${Math.floor(Math.random() * 9999)}@mail.by`,
         name: "Sayyora",
@@ -28,19 +28,19 @@ describe.only("Users", () => {
   });
 
   describe("GET", () => {
-    it("GET /users", () => {
+    it("/users", () => {
       return request.get(`users?access-token=${TOKEN}`).then((res) => {
         expect(res.body.data).to.not.be.empty;
       });
     });
 
-    it("GET/users/id", () => {
+    it("/users/id", () => {
       return request.get(`users/${userId}?access-token=${TOKEN}`).then((res) => {
         expect(res.body.data.id).to.be.eq(userId);
       });
     });
 
-    it("GET/users with query params", () => {
+    it("/users with query params", () => {
       const url = `users?access-token=${TOKEN}&page=5&gender=female&status=active`;
       return request.get(url).then((res) => {
         expect(res.body.data).to.not.be.empty;
@@ -53,7 +53,7 @@ describe.only("Users", () => {
   });
 
   describe("PUT", () => {
-    it("PUT /users/id", () => {
+    it("/users/id", () => {
       const data = {
         status: "active",
         name: `Morgen - ${Math.floor(Math.random() * 7777)}`,
@@ -70,7 +70,7 @@ describe.only("Users", () => {
   });
 
   describe("DELETE", () => {
-    it("DELETE /users/:id", () => {
+    it("/users/:id", () => {
       return request
         .delete(`users/${userId}`)
         .set("Authorization", `Bearer ${TOKEN}`)
