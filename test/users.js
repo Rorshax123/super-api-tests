@@ -1,4 +1,4 @@
-import { interfaces, it } from "mocha";
+import { describe, interfaces, it } from "mocha";
 import supertest from "supertest";
 const request = supertest('https://gorest.co.in/public/v1/');
 import { expect } from "chai";
@@ -73,3 +73,4 @@ describe('Users', () => {
          });
    });
 });
+
