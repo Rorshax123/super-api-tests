@@ -1,83 +1,71 @@
-import { describe, interfaces, it } from "mocha";
-import supertest from "supertest";
-const request = supertest("https://gorest.co.in/public/v1/");
-import { expect } from "chai";
+require("dotenv").config();
+import request from "../config/common";
+const faker = require('faker');
 
-const TOKEN =
-  "a42013229a54d70b3fd0732e02ab6903719d469a666807cbff8874c5eee44a66";
+
+
+import { expect } from "chai";
+import { createRandomUser } from "../helper/user_helper";
+
+const TOKEN = process.env.USER_TOKEN;
 
 describe("Users", () => {
-   let userId;
+  let userId;
   describe("POST", () => {
-    it("/users", () => {
-      const data = {
-        email: `tez-test${Math.floor(Math.random() * 9999)}@mail.by`,
-        name: "Sayyora",
-        gender: "female",
-        status: "active",
-      };
-      return request
-        .post("users")
-        .set("Authorization", `Bearer ${TOKEN}`)
-        .send(data)
-        .then((res) => {
-          expect(res.body.data).to.deep.include(data);
-          userId = res.body.data.id;
-        });
-    });
+    it("/users", async() => {
+      userId = await createRandomUser();
+    }).timeout(10000);
   });
 
   describe("GET", () => {
-    it("/users", () => {
-      return request.get(`users?access-token=${TOKEN}`).then((res) => {
-        expect(res.body.data).to.not.be.empty;
-      });
+    it("/users", async () => {
+      const users = await request
+      .get(`users?access-token=${TOKEN}`);
+      expect(users.body.data).to.not.be.empty;
+      
     });
 
-    it("/users/id", () => {
-      return request.get(`users/${userId}?access-token=${TOKEN}`).then((res) => {
-        expect(res.body.data.id).to.be.eq(userId);
-      });
+    it("/users/id", async () => {
+      const userByid = await request
+      .get(`users/${userId}?access-token=${TOKEN}`);
+      expect(userByid.body.data.id).to.be.eq(userId);
     });
 
-    it("/users with query params", () => {
+    it("/users with query params", async() => {
       const url = `users?access-token=${TOKEN}&page=5&gender=female&status=active`;
-      return request.get(url).then((res) => {
-        expect(res.body.data).to.not.be.empty;
-        res.body.data.forEach((data) => {
+      const getRes = await request
+      .get(url)
+        expect(getRes.body.data).to.not.be.empty;
+        getRes.body.data.forEach((data) => {
           expect(data.gender).to.eq("female");
           expect(data.status).to.eq("active");
         });
-      });
     });
   });
 
   describe("PUT", () => {
-    it("/users/id", () => {
+    it("/users/id", async () => {
       const data = {
         status: "active",
-        name: `Morgen - ${Math.floor(Math.random() * 7777)}`,
+        name: faker.name.firstName(),
       };
 
-      return request
+      const putRes = await request
         .put(`users/${userId}`)
         .set("Authorization", `Bearer ${TOKEN}`)
         .send(data)
-        .then((res) => {
-          expect(res.body.data).to.deep.include(data);
-        });
+      expect(putRes.body.data).to.deep.include(data);
+        
     });
   });
 
   describe("DELETE", () => {
-    it("/users/:id", () => {
-      return request
+    it("/users/:id", async() => {
+      const delRes = await request
         .delete(`users/${userId}`)
         .set("Authorization", `Bearer ${TOKEN}`)
-        .then((res) => {
-          console.log(res.body.data);
-          expect(res.body.data).to.be.eq(undefined);
-        });
+      expect(delRes.body.data).to.be.eq(undefined);
+      
     });
   });
 });

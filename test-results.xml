@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.5930" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-01-06T08:45:20" tests="0" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Negative tests" timestamp="2022-01-06T08:45:20" tests="2" file="C:\Users\xkarimjonov\super-api-tests\test\posts.js" time="4.5920" failures="0">
+    <testcase name="Negative tests 401 autentification failed" time="1.3940" classname="401 autentification failed">
+    </testcase>
+    <testcase name="Negative tests 422 validation failed" time="1.4610" classname="422 validation failed">
+    </testcase>
+  </testsuite>
+</testsuites>

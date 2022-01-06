@@ -1,12 +1,11 @@
-import { describe, it } from "mocha";
-import supertest from "supertest";
-const request = supertest("https://gorest.co.in/public/v1/");
+require('dotenv').config();
+import request from "../config/common";
+const faker = require('faker');
+
 import { expect } from "chai";
 import { createRandomUser } from "../helper/user_helper";
 
-const TOKEN =
-  "a42013229a54d70b3fd0732e02ab6903719d469a666807cbff8874c5eee44a66";
-
+      const TOKEN = process.env.USER_TOKEN;
       let postId, userId;
 
 describe("User posts", () => {
@@ -21,10 +20,9 @@ describe("User posts", () => {
      
         const data = {
           user_id: userId,
-          title: 'my title',
-          body: 'my blog post',
+          title: faker.lorem.sentence(),
+          body: faker.lorem.paragraph(),
         };
-
         const postRes = await request
           .post('posts')
           .set('Authorization', `Bearer ${TOKEN}`)
@@ -34,6 +32,7 @@ describe("User posts", () => {
         postId = postRes.body.data.id;
         
       });
+     
 
        it('Get posts/id', async () => {
           await request
@@ -50,19 +49,31 @@ describe('Negative tests', () => {
       userId = await createRandomUser();
     });
 
-  it.only("401 autentification failed", async () => {
-     
+  it("401 autentification failed", async () => {
+    const data = {
+      user_id: userId,
+      title: "my title",
+      body: "my blog post",
+    };
+
+    const postRes = await request.post("posts").send(data);
+
+    expect(postRes.statusCode).to.eq(401);
+    expect(postRes.body.data.message).to.eq("Authentication failed");
+  });
+
+      it("422 validation failed", async () => {
         const data = {
           user_id: userId,
-          title: 'my title',
-          body: 'my blog post',
+          title: "my title",
         };
 
         const postRes = await request
-          .post('posts')
+          .post("posts")
+          .set("Authorization", `Bearer ${TOKEN}`)
           .send(data);
 
-        expect(postRes.statusCode).to.eq(401);   
-        expect(postRes.body.data.message).to.eq("Authentication failed");    
+        expect(postRes.statusCode).to.eq(422);
+        expect(postRes.body.data[0].message).to.eq("can't be blank");
       });
 });
