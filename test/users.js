@@ -61,15 +61,5 @@ describe('Users', () => {
          });
    });
      
-
-   it('DELETE /users/:id', () =>{
-      return request
-         .delete('users/237')
-         .set('Authorization', `Bearer ${TOKEN}`)
-         .then((res) => {
-            console.log(res.body.data);
-            expect(res.body.data).to.be.eq(undefined);
-         });
-   });
 });
 
