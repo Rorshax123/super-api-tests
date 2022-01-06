@@ -1,11 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="4.5930" tests="2" failures="0">
-  <testsuite name="Root Suite" timestamp="2022-01-06T08:45:20" tests="0" time="0.0000" failures="0">
+<testsuites name="Mocha Tests" time="25.9280" tests="16" failures="1">
+  <testsuite name="Root Suite" timestamp="2022-01-06T08:51:09" tests="0" time="0.0000" failures="0">
   </testsuite>
-  <testsuite name="Negative tests" timestamp="2022-01-06T08:45:20" tests="2" file="C:\Users\xkarimjonov\super-api-tests\test\posts.js" time="4.5920" failures="0">
-    <testcase name="Negative tests 401 autentification failed" time="1.3940" classname="401 autentification failed">
+  <testsuite name="User posts" timestamp="2022-01-06T08:51:09" tests="2" file="C:\Users\xkarimjonov\super-api-tests\test\posts.js" time="4.3330" failures="0">
+    <testcase name="User posts /posts" time="1.4490" classname="/posts">
     </testcase>
-    <testcase name="Negative tests 422 validation failed" time="1.4610" classname="422 validation failed">
+    <testcase name="User posts Get posts/id" time="1.4010" classname="Get posts/id">
+    </testcase>
+  </testsuite>
+  <testsuite name="Negative tests" timestamp="2022-01-06T08:51:14" tests="2" file="C:\Users\xkarimjonov\super-api-tests\test\posts.js" time="4.2680" failures="0">
+    <testcase name="Negative tests 401 autentification failed" time="1.4010" classname="401 autentification failed">
+    </testcase>
+    <testcase name="Negative tests 422 validation failed" time="1.4120" classname="422 validation failed">
+    </testcase>
+  </testsuite>
+  <testsuite name="Users" timestamp="2022-01-06T08:51:18" tests="0" file="C:\Users\xkarimjonov\super-api-tests\test\users.advanced.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="POST" timestamp="2022-01-06T08:51:18" tests="1" file="C:\Users\xkarimjonov\super-api-tests\test\users.advanced.js" time="1.4380" failures="0">
+    <testcase name="Users POST /users" time="1.4350" classname="/users">
+    </testcase>
+  </testsuite>
+  <testsuite name="GET" timestamp="2022-01-06T08:51:19" tests="3" file="C:\Users\xkarimjonov\super-api-tests\test\users.advanced.js" time="4.3670" failures="0">
+    <testcase name="Users GET /users" time="1.4590" classname="/users">
+    </testcase>
+    <testcase name="Users GET /users/id" time="1.4320" classname="/users/id">
+    </testcase>
+    <testcase name="Users GET /users with query params" time="1.4760" classname="/users with query params">
+    </testcase>
+  </testsuite>
+  <testsuite name="PUT" timestamp="2022-01-06T08:51:24" tests="1" file="C:\Users\xkarimjonov\super-api-tests\test\users.advanced.js" time="1.4520" failures="0">
+    <testcase name="Users PUT /users/id" time="1.4520" classname="/users/id">
+    </testcase>
+  </testsuite>
+  <testsuite name="DELETE" timestamp="2022-01-06T08:51:25" tests="1" file="C:\Users\xkarimjonov\super-api-tests\test\users.advanced.js" time="1.4250" failures="0">
+    <testcase name="Users DELETE /users/:id" time="1.4250" classname="/users/:id">
+    </testcase>
+  </testsuite>
+  <testsuite name="Users" timestamp="2022-01-06T08:51:27" tests="6" file="C:\Users\xkarimjonov\super-api-tests\test\users.js" time="8.6430" failures="1">
+    <testcase name="Users GET /users" time="1.4260" classname="GET /users">
+    </testcase>
+    <testcase name="Users GET/users/id" time="1.4180" classname="GET/users/id">
+    </testcase>
+    <testcase name="Users GET/users with query params" time="1.4550" classname="GET/users with query params">
+    </testcase>
+    <testcase name="Users POST /users" time="1.4450" classname="POST /users">
+    </testcase>
+    <testcase name="Users PUT /users/id" time="1.4540" classname="PUT /users/id">
+    </testcase>
+    <testcase name="Users DELETE /users/:id" time="1.4410" classname="DELETE /users/:id">
+      <failure message="expected { message: &apos;Resource not found&apos; } to equal undefined" type="AssertionError"><![CDATA[AssertionError: expected { message: 'Resource not found' } to equal undefined
+    at C:\Users\xkarimjonov\super-api-tests\test\/users.js:71:41
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)]]></failure>
     </testcase>
   </testsuite>
 </testsuites>
