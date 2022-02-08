@@ -1,3 +1,3 @@
 export default {
-  baseurl: "https://texnomart.uz/",
+  baseurl: "https://texnomart.uz/api/v1/",
 };
