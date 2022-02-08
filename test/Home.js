@@ -17,31 +17,37 @@ describe('Home page get', () => {
     it("Special categories are not null", async () => {
       const res = await request.get("home/");
       expect(res.body.data.specialCategoryProducts).is.not.null;
+      expect(res.body.data.specialCategoryProducts).to.deep.not.equal([]);
     });
 
     it("Slider is not null", async () => {
       const res = await request.get("home/");
       expect(res.body.data.slider).is.not.null;
+      expect(res.body.data.slider).to.deep.not.equal([]);
     });
 
     it("Categories are not null", async () => {
       const res = await request.get("home/");
       expect(res.body.data.categories).is.not.null;
+      expect(res.body.data.categories).to.deep.not.equal([]);
     });
 
     it("New_products are not null", async () => {
       const res = await request.get("home/");
       expect(res.body.data.new_products).is.not.null;
+      expect(res.body.data.new_products).to.deep.not.equal([]);
     });
 
     it("HitProducts are not null", async () => {
       const res = await request.get("home/");
       expect(res.body.data.hitProducts).is.not.null;
+      expect(res.body.data.hitProducts).to.deep.not.equal([]);
     });
 
     it("Recommended_products are not null", async () => {
       const res = await request.get("home/");
       expect(res.body.data.recommended_products).is.not.null;
+      expect(res.body.data.recommended_products).to.deep.not.equal([]);
     });
   })
 
@@ -173,7 +179,7 @@ describe('Home page get', () => {
   })
 })
 
-describe.only('Home recently viewed post', () => {
+describe('Home recently viewed post', () => {
   it('Send empty field', async() => {
     const data = [];
     const res = await request.post("home/recently").send(data);
