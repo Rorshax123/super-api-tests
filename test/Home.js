@@ -226,3 +226,62 @@ describe('Home recently viewed post', () => {
     });
 
 })
+
+describe('New profucts', () => {
+
+  it('Check status code of new products when swiping', async() => {
+    const res = await request.get("home/infinity");
+    expect(res.statusCode).to.be.equal(200);
+    expect(res.body.success).to.be.equal(true);
+  })
+
+  it('Checking data is not null', async() => {
+    const res = await request.get("home/infinity");
+    expect(res.body.data).is.not.null;
+  })
+
+  it("Checking items is not null", async () => {
+     const res = await request.get("home/infinity");
+    expect(res.body.data.items).is.not.null;
+    expect(res.body.data.items).to.deep.not.equal([]);
+   });
+
+   it("Checking item's first element data's are not null", async () => {
+     const res = await request.get("home/infinity");
+     expect(res.body.data.items[0].id).is.not.null;
+     expect(res.body.data.items[0].unique_id).is.not.null;
+     expect(res.body.data.items[0].unique_id).is.not.equal("");
+     expect(res.body.data.items[0].name).is.not.null;
+     expect(res.body.data.items[0].name).is.not.equal("");
+     expect(res.body.data.items[0].description).is.not.null;
+     expect(res.body.data.items[0].description).is.not.equal("");
+     expect(res.body.data.items[0].image).is.not.null;
+     expect(res.body.data.items[0].image).is.not.equal("");
+     expect(res.body.data.items[0].sale_price).is.not.null;
+     expect(res.body.data.items[0].loan_price).is.not.null;
+     expect(res.body.data.items[0].f_sale_price).is.not.equal("");
+     expect(res.body.data.items[0].f_sale_price).is.not.null;
+     expect(res.body.data.items[0].f_loan_price).is.not.equal("");
+     expect(res.body.data.items[0].f_loan_price).is.not.null;
+   });
+
+  it("Checking _links is not null", async () => {
+    const res = await request.get("home/infinity");
+    expect(res.body.data._links).is.not.null;
+    expect(res.body.data._links).to.deep.not.equal({});
+  });
+
+  it("Checking _meta is not null", async () => {
+       const res = await request.get("home/infinity");
+       expect(res.body.data._meta).is.not.null;
+       expect(res.body.data._meta).to.deep.not.equal({});
+     });
+
+  it("Checking _meta datas are not null", async () => {
+       const res = await request.get("home/infinity");
+       expect(res.body.data._meta.totalCount).is.not.null;
+       expect(res.body.data._meta.pageCount).is.not.null;
+       expect(res.body.data._meta.currentPage).is.not.null;
+       expect(res.body.data._meta.perPage).is.not.null;
+     });
+})
