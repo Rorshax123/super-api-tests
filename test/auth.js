@@ -153,7 +153,6 @@ describe("Verify login", () => {
     expect(res.body.error_code).to.be.equal(0);
     expect(res.body.message).to.be.equal("");
     expect(res.body.data.phone).to.be.equal("998977111714");
-    USER_TOKEN = res.body.data.token;
     expect(res.body.data.name).to.be.equal(firstName);
     expect(res.body.data.surname).to.be.equal(lastName);
   });
@@ -413,7 +412,3 @@ describe("Check number", () => {
     expect(res.body.data.is_registered).to.be.equal(false);
   });
 });
-
-describe("Info", () => {
-   
-})
