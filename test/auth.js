@@ -12,7 +12,7 @@ async function sleep(msec) {
   return new Promise((resolve) => setTimeout(resolve, msec));
 }
 
-describe("Login", () => {
+describe.only("Login", () => {
   it("Sms code sent to phone number", async () => {
     registerUser(phoneNumber, firstName, lastName, code);
     let data = {
