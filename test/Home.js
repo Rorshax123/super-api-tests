@@ -12,6 +12,7 @@ describe('Home page get', () => {
       expect(res.statusCode).to.be.eq(200);
     });
   })
+  
    
   describe('Check main items for not null', () => {
     it("Special categories are not null", async () => {
